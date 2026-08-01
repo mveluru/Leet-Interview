@@ -1,7 +1,5 @@
 package linkedlist;
 
-import leetcode75.jee.datastructures.Lnode;
-
 import java.util.stream.IntStream;
 
 public class LinkedList {
@@ -60,12 +58,12 @@ public class LinkedList {
        return false;
     }
 
-    public void insertAt(int value,int index){
-        LNode newNode = new LNode(value);
+    public void insertAt(int value1, int i){
+        LNode newNode = new LNode(i);
 
         //LNode currentNode=head;
         //LNode prevNode=currentNode;
-        if (head!=null &&  head.getData()==value){
+        if (head!=null &&  head.getData()==value1){
             newNode.setNext(head);
             head= newNode;
         }
@@ -117,8 +115,12 @@ public class LinkedList {
         LinkedList linkedList = new LinkedList();
         IntStream.range(0,10).forEach(linkedList::insert);
         linkedList.printlist();
+        System.out.println();
+        linkedList.insertAt(0,0);
+        linkedList.printlist();
         linkedList.reverseList();
         System.out.println("\nAfter reverse");
         linkedList.printlist();
+
     }
 }
