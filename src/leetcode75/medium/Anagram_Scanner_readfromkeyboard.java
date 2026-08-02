@@ -3,7 +3,7 @@ package leetcode75.medium;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Anagram2 {
+public class Anagram_Scanner_readfromkeyboard {
 
 
     static boolean isAnagram(String a, String b) {
