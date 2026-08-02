@@ -3,7 +3,7 @@ package leetcode75.easy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+//problem# 643
 public class SubArrayAndMaxAverage {
 
     public static List<int[]> subArrays(int[] nums, int size) {
