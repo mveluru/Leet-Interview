@@ -33,6 +33,6 @@ public class Tribonacci {
 
     public static void main(String[] args) {
         Tribonacci tribonacci = new Tribonacci();
-        System.out.println(tribonacci.tribonacci(4));
+        System.out.println(tribonacci.tribonacci(25));
     }
 }
