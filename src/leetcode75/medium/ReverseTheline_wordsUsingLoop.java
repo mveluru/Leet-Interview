@@ -1,5 +1,6 @@
 package leetcode75.medium;
 
+import java.util.*;
 import java.util.Stack;
 import java.util.stream.Stream;
 
@@ -29,9 +30,18 @@ public class ReverseTheline_wordsUsingLoop {
         return sb.toString();
     }
 
+    public static String reversedCollection(String s) {
+        String[] words = s.trim().split("\\s+");
+        List<String> wordsList = Arrays.asList(words);
+        Collections.reverse(wordsList);
+        //System.out.println(String.join(" ", wordsList));
+        return String.join(" ", wordsList);
+    }
+
     public static void main(String[] args) {
         String s = "the sky is blue";
         System.out.println("Reversed string using stack: " + wordsUsingStack(s));
+        System.out.println("Reversed string using collection: " + reversedCollection(s));
 
     }
 }
