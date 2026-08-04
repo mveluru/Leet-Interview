@@ -5,31 +5,38 @@ import java.util.stream.Collectors;
 
 public class NonRepeatsubstring {
 
+   public void nonRepeatSubstring(String S,int size) {
+       char[] charS = S.toCharArray();
+       List<String> result = new ArrayList<>();
+       if (charS.length < size) {
+           return;
+       }
+       for (int i = 0; i < charS.length - size; i++) {
+           String substring = S.substring(i, i + size);
+           if (checkSubstring(substring)) {
+               result.add(substring);
+           }
+       }
+         if (result.isEmpty()) {
+             System.out.println("no substring found");
+             return;
+         }
+         System.out.println(String.join(",", result));
+
+    }
+    public boolean checkSubstring(String S) {
+
+       Set<String> set = new HashSet<>();
+      for (char c : S.toCharArray()) {
+          set.add(String.valueOf(c));
+
+      }
+        return set.size() == S.length();
+
+    }
     public static void main(String[] args) {
-        //String input = "lkjsdflkjldsfffffsss";
-        //String input = "abcdefghijklmnopqrst";
-        //String input = "abcabcbb";
-        //String input = "bbbbbbb";
-        String input = "pwwkew";
-        Set<String> setinput = new HashSet<>();
-        for (int i = 0; i < input.length(); i++) {
-            for (int j = i + 1; j <= input.length(); j++) {
-                String ss = input.substring(i, j);
-                if (ss.length()>=1 && (ss.chars().distinct().count() == ss.length())) {
-                    setinput.add(input.substring(i, j));
-                }
-
-            }
-        }
-
-        int lenMax = setinput.stream().mapToInt(String::length).max().getAsInt();
-       Set<String> maxLengset = setinput.stream().filter(s -> s.length()==lenMax).collect(Collectors.toSet());
-
-        //Arrays.sort(setinput.toArray());
-        System.out.println(maxLengset);
-
-
-
-
+       NonRepeatsubstring nrs = new NonRepeatsubstring();
+       nrs.nonRepeatSubstring("abcabcbb", 3);
+       nrs.nonRepeatSubstring("bbbb", 2);
     }
 }
