@@ -1,8 +1,6 @@
 package leetcode75.easy;
-
+//Problem#150
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 public class RemoveDupsAndReplaceWithUnderScore {
 
