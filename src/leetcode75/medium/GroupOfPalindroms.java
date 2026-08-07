@@ -17,13 +17,15 @@ public class GroupOfPalindroms {
         for(String word : palindrom.keySet()){
             if(palindrom.get(word)){
                 System.out.println(word + ": " + palindrom.get(word));
+            }else{
+                System.out.println(word + ": " + palindrom.get(word));
             }
         }
     }
 
 
     public static void main(String[] args){
-     String[] palindroms ={"Radar", "Kayak", "Madam", "Level", "Refer", "Rotor", "Stats", "Tenet", "Minim", "Sagas"};
+     String[] palindroms ={"Radar", "Kayak", "Madam", "Level", "Refer", "Rotor", "Stats", "Tenet", "Minim", "Sagas","Notes"};
      GroupOfPalindroms group = new GroupOfPalindroms();
      group.palindroms(palindroms);
     }
