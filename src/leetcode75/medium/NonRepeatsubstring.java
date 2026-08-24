@@ -11,7 +11,7 @@ public class NonRepeatsubstring {
        if (charS.length < size) {
            return;
        }
-       for (int i = 0; i < charS.length - size; i++) {
+       for (int i = 0; i <= charS.length - size; i++) {
            String substring = S.substring(i, i + size);
            if (checkSubstring(substring)) {
                result.add(substring);
