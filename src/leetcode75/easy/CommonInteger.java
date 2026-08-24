@@ -15,8 +15,9 @@ public class CommonInteger {
         int[] input1 = {2,7,17,19,20,45,56,159,239};
         int[] intput2 = {7,12,15,19,22,34,55,150,159};
          // Common elements
-        List<Integer> list1 = Arrays.stream(input1).boxed().toList();
+        List<Integer> list1 = new ArrayList<>(Arrays.stream(input1).boxed().toList());
         List<Integer> list2 = Arrays.stream(intput2).boxed().toList();
+        System.out.println("common "+list1.retainAll(list2));
         List<Integer> list3 = list1.stream().filter(list2::contains).toList();
         System.out.println("Common elements: "+list3);
 
