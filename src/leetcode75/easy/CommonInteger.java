@@ -3,6 +3,12 @@ package leetcode75.easy;
 import java.util.*;
 
 public class CommonInteger {
+    public static void commonList(List<Integer> l1, List<Integer> l2) {
+        Set<Integer> set = new HashSet<>(l2);
+        List<Integer> commonList = l1.stream().filter(set::contains).distinct().toList();
+        System.out.println(" Common List "+commonList);
+
+    }
 
     public static void main(String[] args){
 
