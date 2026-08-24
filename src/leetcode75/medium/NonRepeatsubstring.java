@@ -38,5 +38,6 @@ public class NonRepeatsubstring {
        NonRepeatsubstring nrs = new NonRepeatsubstring();
        nrs.nonRepeatSubstring("abcabcbb", 3);
        nrs.nonRepeatSubstring("bbbb", 2);
+        nrs.nonRepeatSubstring("bbbbac", 2);
     }
 }
