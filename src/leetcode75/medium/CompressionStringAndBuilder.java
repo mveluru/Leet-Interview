@@ -1,8 +1,6 @@
 package leetcode75.medium;
 
-import java.util.stream.Stream;
-
-public class CompressionBuilder {
+public class CompressionStringAndBuilder {
 
     public static int compressString(char[] chars) {
        if (chars == null || chars.length==0){
@@ -10,7 +8,7 @@ public class CompressionBuilder {
        }
        StringBuilder sb = new StringBuilder();
        int count = 1;
-        for (int i = 0; i < chars.length; i++) {
+        for (int i = 0; i <= chars.length; i++) {
             // If it's the last character or different from the next one
             if (i == chars.length - 1 || chars[i] != chars[i + 1]) {
                 sb.append(chars[i]);
