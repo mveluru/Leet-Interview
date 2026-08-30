@@ -260,6 +260,19 @@ public class JavaStreams {
 				List.of("Tom", "Bob", "Sam", "Alice");
 		Map<Integer,String> result = names.stream().collect(Collectors.toMap(String::length, Function.identity(),(s1, s2)->s1+":"+ s2));
 	}
+
+	// once it conditions met and find first it stops executing.
+	public void findFrist(){
+		Optional<Integer> result =
+				Stream.of(1, 2,3, 4, 5)
+						.filter(n -> {
+							System.out.print(n);
+							return n > 2;
+						})
+						.findFirst();
+
+		System.out.println(":" + result.get());
+	}
 	
 	public static void main(String[] args) {
 		JavaStreams jstreams = new JavaStreams();
