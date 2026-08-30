@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -252,6 +253,12 @@ public class JavaStreams {
 		System.out.println("MAP-FILTER-Sorted");
 		System.out.println(result);
 		
+	}
+
+	public void ToMapAndConcat() {
+		List<String> names =
+				List.of("Tom", "Bob", "Sam", "Alice");
+		Map<Integer,String> result = names.stream().collect(Collectors.toMap(String::length, Function.identity(),(s1, s2)->s1+":"+ s2));
 	}
 	
 	public static void main(String[] args) {
