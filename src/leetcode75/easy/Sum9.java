@@ -1,41 +1,33 @@
 package leetcode75.easy;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Sum9 {
 
-    public static void main(String[] args) {
-        //int[] nums = {2, 1, 6, 4, 2, 1};
-        //int[] nums = {3, 1, 3, 3, 4};
-        //int[] nums = {1, 3, 3, 3, 1};
-        //int[] nums = {1, 3, 1, 1, 3, 3, 1};
-        //int[] nums = {3, 3, 1, 1, 1, 3, 1};
-        //int[] nums = {1, 1, 1, 1, 3, 3, 3};
-        //int[] nums = {1, 1, 1, 1, 3, 3, 3, 1};
-        int[] nums = {1, 1, 1, 4, 4, 1, 1,1,1};
+    public static int[] SumTwo9(int[] nums, int target) {
 
-        int beginIndex = 0;
-        int nextIndex = beginIndex + 1;
-        int endIndex = nums.length - 1;
-        while (beginIndex < nextIndex && nextIndex <= endIndex) {
-            boolean isvaluesFound = false;
-            for (int i = 0; i < nums.length; i++) {
-                if ((i != beginIndex && i != nextIndex)) {
-                    if (nums[beginIndex] + nums[nextIndex] + nums[i] == 9) {
-                        System.out.println("index1: " + beginIndex + " index2: " + nextIndex + " index3: " + i);
-                        System.out.println(nums[beginIndex] + " " + nums[nextIndex] + " " + nums[i]);
-                        isvaluesFound = true;
-                        break;
-                        //i=nums.length-1;
-                    }
-                }
+        Map<Integer, Integer> map = new HashMap<>();
 
-            }//for loop
-
-            if (isvaluesFound) {
-                break;
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement)) {
+                return new int[] { map.get(complement), i };
             }
-            beginIndex++;
-            nextIndex++;
-
+            map.put(nums[i], i);
         }
+
+        return new int[] {};
     }
+
+    public static void main(String[] args) {
+
+        int[] nums = { 1, 11, 8, 15 };
+        int targetSum = 9;
+
+        int[] indexes = SumTwo9(nums, targetSum);
+        System.out.printf("%4d,%4d", indexes[0], indexes[1]);
+
+    }
+
 }
