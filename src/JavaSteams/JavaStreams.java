@@ -167,6 +167,8 @@ public class JavaStreams {
 
 	    System.out.println(allCompanyTasks);
 	    // Output: [Fix Bug A, Write Docs, Interview Candidate, Fix Bug B, Code Review]
+		Map<String,List<String>> employeesduties = employees.stream().collect(Collectors.toMap(Employee::name, e->e.tasks.stream().toList()));
+		System.out.println(employeesduties);
 	}
 	
 	public void faltMapExample2() {
