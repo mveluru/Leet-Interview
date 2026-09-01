@@ -275,6 +275,14 @@ public class JavaStreams {
 
 		System.out.println(":" + result.get());
 	}
+
+	public  void getUnique(){
+		int[] nums = {1, 2, 2, 3, 4, 4, 5};
+		Map<Integer,Long> counts = Arrays.stream(nums).boxed().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+		int[] unique = Arrays.stream(nums).filter(n->counts.get(n) ==1).toArray();
+		System.out.println(Arrays.toString(unique));
+
+	}
 	
 	public static void main(String[] args) {
 		JavaStreams jstreams = new JavaStreams();
@@ -297,6 +305,8 @@ public class JavaStreams {
         jstreams.peekFilterMap();
         jstreams.faltMapExample2();
         jstreams.mapFilterSorted();
+		jstreams.mapFilterSorted();
+		jstreams.getUnique();
 		
 	}
 
