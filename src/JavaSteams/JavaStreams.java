@@ -1,12 +1,7 @@
 package JavaSteams;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.IntSummaryStatistics;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -261,6 +256,10 @@ public class JavaStreams {
 		List<String> names =
 				List.of("Tom", "Bob", "Sam", "Alice");
 		Map<Integer,String> result = names.stream().collect(Collectors.toMap(String::length, Function.identity(),(s1, s2)->s1+":"+ s2));
+		System.out.println(result);
+		Map<Integer,String> result2 = names.stream().filter(Objects::nonNull)
+				.collect(Collectors.groupingBy(String::length, Collectors.joining(":")));
+		System.out.println(result);
 	}
 
 	// once it conditions met and find first it stops executing.
