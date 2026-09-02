@@ -206,6 +206,10 @@ public class JavaStreams {
 			    List.of(10, 20, 30, 40, 50, 25, 60);
 		List<Integer> result = numbers.stream().takeWhile(n-> n<50).toList();
 		System.out.println(result);
+
+		List<Integer> result1 = List.of(2, 4, 6, 7, 8, 10);
+		int[] array = result1.stream().takeWhile(n->n%2==0).mapToInt(Integer::intValue).toArray();
+		System.out.println(Arrays.toString(array));
 	}
 	
 	public void dropwhile() {
