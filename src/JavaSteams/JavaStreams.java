@@ -282,6 +282,11 @@ public class JavaStreams {
 		System.out.println(Arrays.toString(unique));
 
 	}
+
+	public void streamIterator() {
+		List<Integer> stream = Stream.iterate(1, n->n<10,n -> n+2).toList();
+		System.out.println(stream);
+	}
 	
 	public static void main(String[] args) {
 		JavaStreams jstreams = new JavaStreams();
