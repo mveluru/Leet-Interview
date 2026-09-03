@@ -305,6 +305,31 @@ public class JavaStreams {
 		String[] result = Arrays.stream(stringArray).filter(str->str!=null && !str.isBlank()).toArray(String[]::new);
 		System.out.println(Arrays.toString(result));
 	}
+
+	public void removeDuplicatesUseCollection(){
+		// Create a mutable-backed list containing duplicate elements
+		List<Integer> numbers = Arrays.asList(5, 2, 8, 2, 3, 5, 9, 3);
+
+		// Collect into a LinkedHashSet:
+		// 1. .distinct() filters out duplicate numbers
+		// 2. LinkedHashSet preserves the original insertion order of the unique elements
+		Set<Integer> linkedHashSet = numbers.stream()
+				.distinct()
+				.collect(Collectors.toCollection(LinkedHashSet::new));
+
+		// Collect into a TreeSet:
+		// 1. .distinct() filters duplicates (though TreeSet inherently does this)
+		// 2. TreeSet automatically sorts the unique elements in ascending natural order
+		Set<Integer> treeSet = numbers.stream()
+				.distinct()
+				.collect(Collectors.toCollection(TreeSet::new));
+
+		// Prints: [5, 2, 8, 3, 9] (Maintains original order of appearance)
+		System.out.println(linkedHashSet);
+
+		// Prints: [2, 3, 5, 8, 9] (Sorted numerically)
+		System.out.println(treeSet);
+	}
 	
 	public static void main(String[] args) {
 		JavaStreams jstreams = new JavaStreams();
