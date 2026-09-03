@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class RepeatingChars {
+public class FindRepeatingChars {
 
     protected void findduplicateChars(String input){
         char[] chars = input.toCharArray();
@@ -27,7 +27,7 @@ public class RepeatingChars {
 
     public static void main(String[] args){
         String str ="AaaAppPPPPPle";
-        RepeatingChars repeatingChars = new RepeatingChars();
+        FindRepeatingChars repeatingChars = new FindRepeatingChars();
         repeatingChars.findduplicateChars(str);
 
 
