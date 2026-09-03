@@ -329,6 +329,19 @@ public class JavaStreams {
 
 		// Prints: [2, 3, 5, 8, 9] (Sorted numerically)
 		System.out.println(treeSet);
+
+	}
+
+	public void average(){
+		List<Integer> numbers = Arrays.asList(5,10,15,20,25);
+		Double average= numbers.stream().collect(Collectors.averagingDouble(Integer::intValue));
+		Double doubleAverage= numbers.stream().mapToDouble(Integer::intValue).average().orElse(0.0);
+		System.out.println(average);
+		//
+		boolean allMatch = numbers.stream().allMatch(n->n>0);
+		System.out.println(allMatch);
+		Map<Boolean,List<Integer>> addEven = numbers.stream().collect(Collectors.partitioningBy(n->n%2==0));
+		System.out.println(addEven);
 	}
 	
 	public static void main(String[] args) {
