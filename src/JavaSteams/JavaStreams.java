@@ -299,6 +299,12 @@ public class JavaStreams {
 		mapCount = Arrays.stream(array).boxed().collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
 		System.out.println(mapCount);
 	}
+
+	public void removeSpaceObjectNullAndNextraBlanks(){
+		String[] stringArray = {"java",""," ",null,"C++","goLang"};
+		String[] result = Arrays.stream(stringArray).filter(str->str!=null && !str.isBlank()).toArray(String[]::new);
+		System.out.println(Arrays.toString(result));
+	}
 	
 	public static void main(String[] args) {
 		JavaStreams jstreams = new JavaStreams();
