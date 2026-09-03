@@ -291,6 +291,14 @@ public class JavaStreams {
 		List<Integer> stream = Stream.iterate(1, n->n<10,n -> n+2).toList();
 		System.out.println(stream);
 	}
+
+	public void groupingByAndSortedMap(){
+		int[] array = {10,10,1,1,2,3,3,3,4,4,5,6,6,6,7,8,9,9};
+		//
+		Map<Integer,Long> mapCount = new TreeMap<>();
+		mapCount = Arrays.stream(array).boxed().collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+		System.out.println(mapCount);
+	}
 	
 	public static void main(String[] args) {
 		JavaStreams jstreams = new JavaStreams();

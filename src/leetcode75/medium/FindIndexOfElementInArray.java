@@ -22,9 +22,28 @@ public class FindIndexOfElementInArray {
         return -1;
     }
 
+    public static void findIndexOfElement(int[] intArray, int num) {
+        int leftIndex = 0;
+        int rightIndex = intArray.length - 1;
+        ;
+        while (leftIndex <= rightIndex) {
+            if (intArray[leftIndex] == num) {
+                System.out.println("\nIndex: " + leftIndex);
+                break;
+            } else if (intArray[rightIndex] == num) {
+                System.out.println("\nIndex: " + rightIndex);
+                break;
+            }
+            leftIndex++;
+            rightIndex--;
+        }
+    }
+
     public static void main(String[] args){
         int[] my_array = { 5, 4, 6, 1, 3, 2, 7, 8, 9,10,21,0 };
         System.out.println("Index position of 21 is: " + findIndex(my_array, 21));
         System.out.println("Index position of 6 is: " + findIndex(my_array, 6));
+
+        findIndexOfElement(my_array, 9);
     }
 }
