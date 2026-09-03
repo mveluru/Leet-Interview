@@ -343,6 +343,8 @@ public class JavaStreams {
 		Map<Boolean,List<Integer>> addEven = numbers.stream().collect(Collectors.partitioningBy(n->n%2==0));
 		System.out.println(addEven);
 	}
+
+
 	
 	public static void main(String[] args) {
 		JavaStreams jstreams = new JavaStreams();
