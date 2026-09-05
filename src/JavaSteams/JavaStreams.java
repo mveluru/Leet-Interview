@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class JavaStreams {
@@ -343,6 +344,14 @@ public class JavaStreams {
 		Map<Boolean,List<Integer>> addEven = numbers.stream().collect(Collectors.partitioningBy(n->n%2==0));
 		System.out.println(addEven);
 	}
+	public void reverseTheSentence(){
+		String input = "searching for my laptop      ";
+		String[] stringArray = input.trim().split("\\s+");
+		int len = stringArray.length-1;
+		String newinput= IntStream.rangeClosed(0, len)
+				.mapToObj(i-> stringArray[len-i]).collect(Collectors.joining(" "));
+		System.out.println(newinput);
+	}
 
 
 	
@@ -369,6 +378,8 @@ public class JavaStreams {
         jstreams.mapFilterSorted();
 		jstreams.mapFilterSorted();
 		jstreams.getUnique();
+		jstreams.average();
+		jstreams.reverseTheSentence();
 		
 	}
 

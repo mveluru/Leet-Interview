@@ -20,7 +20,7 @@ public class LengthOfLastWord {
     }
 
     private static int lastwordlength(String input) {
-        String[] string = input.split("\\s");
+        String[] string = input.split("\\s+");
         return string[string.length - 1].length();
     }
 
