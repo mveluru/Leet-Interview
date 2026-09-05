@@ -1,6 +1,13 @@
 package leetcode75.easy;
 
 public class ChangeWithNoTemp {
+    public static void swap(){
+        var a=10;
+        var b=20;
+        a ^=b ^(b=a);
+        System.out.println("a =" + a + " b =" + b);
+    }
+
     public static void main(String[] args) {
         int a =10;
         int b =11;
@@ -17,5 +24,8 @@ public class ChangeWithNoTemp {
         // a = 1 ^ 10 = 11 (original value of b)
         a ^= b;
         System.out.println("a =" + a + " b =" + b);
+
+        swap();
     }
+
 }
