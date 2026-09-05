@@ -1,6 +1,6 @@
 package leetcode75.easy;
 
-public class isPangram {
+public class isPangram_UniqueALLAlphabets {
     public static String isPangrams(String sentence) {
         if (sentence == null || sentence.length() < 26) {
             return "not pangram";
