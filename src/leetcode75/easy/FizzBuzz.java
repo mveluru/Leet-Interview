@@ -1,6 +1,7 @@
 package leetcode75.easy;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -8,13 +9,13 @@ import java.util.stream.IntStream;
 public class FizzBuzz {
 	
 	public static void fizzBuzz(int n) {
-		Set<String> fizzBuzzSet = IntStream.rangeClosed(1, n)
+		List<String> fizzBuzzSet = IntStream.rangeClosed(1, n)
 				.mapToObj(i-> { if(i%3==0&& i%5==0)return "FizzBuzz";
 				if(i%3==0)return "Fizz";
 				if(i%5==0)return "Buzz";
 				return String.valueOf(i);
 			
-		}).collect(Collectors.toCollection(LinkedHashSet::new));
+		}).collect(Collectors.toList());
 		System.out.println(fizzBuzzSet);
 	}
 	
