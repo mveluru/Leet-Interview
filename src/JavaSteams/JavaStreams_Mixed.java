@@ -11,7 +11,15 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * A collection of small, self-contained examples demonstrating Java Streams
+ * operations on characters and mixed-type ({@code Object}) collections.
+ */
 public class JavaStreams_Mixed {
+	/**
+	 * Extracts the vowels present in a string by streaming its characters and
+	 * filtering against a set of vowel characters.
+	 */
 	public void findVowels() {
 		String vowels = "aeiouAEIOU";
 		String input = "SpringBoot";
@@ -20,6 +28,11 @@ public class JavaStreams_Mixed {
 		System.out.println(charValues);
 	}
 
+	/**
+	 * Counts the frequency of each character in a string using
+	 * {@link Collectors#groupingBy} with {@link Collectors#counting}, shown with
+	 * both an identity lambda and {@link Function#identity()}.
+	 */
 	public void characterFrequency() {
 		String input = "banana";
 		Map<String, Long> result = input.chars().mapToObj(ch -> String.valueOf((char) ch))
@@ -32,11 +45,20 @@ public class JavaStreams_Mixed {
 		System.out.println(result1);
 	}
 	
+	/**
+	 * Streams the characters of a string, removes duplicates, and sorts the
+	 * remaining characters in natural order.
+	 */
 	public void distinctSorted() {
 		String input = "programming";
 		List<String> result = input.chars().mapToObj(ch->String.valueOf((char)ch)).distinct().sorted(Comparator.naturalOrder()).toList();
 		System.out.println(result);
 	}
+	/**
+	 * Finds the first character in a string that occurs exactly once, by grouping
+	 * characters into a {@link LinkedHashMap} (to preserve encounter order) with
+	 * their counts, then filtering for a count of 1.
+	 */
 	public void findSinglechar() {
 		String input = "swiss";
 		
@@ -58,12 +80,21 @@ public class JavaStreams_Mixed {
 			System.out.println(first);
 	}
 	
+	/**
+	 * Converts each character of a string to upper case by streaming its characters
+	 * and mapping each to its upper-case form.
+	 */
 	public void toUpper() {
 		String input = "java";
 		List<String> result = input.chars().mapToObj(ch->String.valueOf((char)ch)).map(String::toUpperCase).toList();
 		System.out.println(result);
 	}
 	
+	/**
+	 * Extracts the {@link Integer} elements from a mixed-type list, first using
+	 * {@code Integer.class::isInstance}/{@code cast} and then via an alternative
+	 * approach that converts each element to a string and parses digit-only ones.
+	 */
 	public void extractInteger() {
 		List<Object> values =
 			    List.of("Java", 10, "Spring", 20, 30, "AWS");
@@ -77,6 +108,11 @@ public class JavaStreams_Mixed {
 				.filter(s->s.matches("\\d+")).mapToInt(Integer::parseInt).boxed().toList();
 	}
 	
+	/**
+	 * Extracts the {@link String} elements from a mixed-type list using
+	 * {@code String.class::isInstance}/{@code cast}, and separately groups all
+	 * elements by their runtime class simple name.
+	 */
 	public void extractStringAndIntegerSeperately() {
 		List<Object> values =
 			    List.of("Java", 10, "Spring", 20, "AWS", 30);
@@ -91,6 +127,11 @@ public class JavaStreams_Mixed {
 		
 	}
 	
+	/**
+	 * Transforms a mixed-type list using pattern-matching {@code instanceof}:
+	 * upper-cases {@link String} elements and multiplies {@link Integer} elements
+	 * by 10, leaving any other type unchanged.
+	 */
 	public void extractStringAndIntegerSeperatelyUpper() {
 		List<Object> values =
 			    List.of("java", 10, "spring", 20, "aws", 30);
@@ -111,6 +152,10 @@ public class JavaStreams_Mixed {
 			System.out.println(result);
 	}
 	
+	/**
+	 * Sums the {@link Integer} elements of a mixed-type list by filtering and
+	 * casting to {@code Integer} before summing with {@code mapToInt}.
+	 */
 	public void sumOfIntegers() {
 		List<Object> values =
 			    List.of("Java", 10, "Spring", 20, "AWS", 30);
@@ -121,6 +166,10 @@ public class JavaStreams_Mixed {
 		
 	}
 	
+	/**
+	 * Filters a mixed-type list using pattern-matching {@code instanceof}, keeping
+	 * strings longer than 3 characters and integers greater than 20.
+	 */
 	public void mixedFiltering() {
 		List<Object> values =
 			    List.of("Java", 10, "Spring", 25, "AWS", 40, "Docker", 5);
@@ -136,6 +185,10 @@ public class JavaStreams_Mixed {
 		System.out.println(result);
 	}
 
+	/**
+	 * Runs each of the demonstration methods above in sequence, printing their
+	 * output to standard out.
+	 */
 	public static void main(String[] args) {
 		JavaStreams_Mixed jsm = new JavaStreams_Mixed();
 		jsm.findVowels();

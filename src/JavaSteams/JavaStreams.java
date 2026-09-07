@@ -7,11 +7,18 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+/**
+ * A collection of small, self-contained examples demonstrating common
+ * {@link java.util.stream.Stream} operations and collectors in the Java Streams API.
+ */
 public class JavaStreams {
 	List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
 	List<String> names = List.of("spring", "java", "aws");
 	
 	
+	/**
+	 * Filters the even numbers from {@link #numbers} and multiplies each by 10.
+	 */
 	public void evenNumberAndMultiply() {
 		List<Integer> result = numbers.stream().filter(n->n%2==0).map(n->n*10).toList();
 		System.out.println(result);
@@ -19,17 +26,30 @@ public class JavaStreams {
 		
 	}
 	
+	/**
+	 * Sorts {@link #names} alphabetically and converts each entry to upper case.
+	 */
 	public void upperCaseAndSort() {
 		List<String> result = names.stream().sorted().map(n->n.toUpperCase()).toList();
 		System.out.println(result);
 	}
 	
+	/**
+	 * Removes duplicate values from a list of integers and sorts the remaining values
+	 * in natural (ascending) order.
+	 */
 	public void removeDupsAndSort() {
 		List<Integer> numbers= List.of(5, 2, 3, 2, 1, 5, 4, 3);
 		List<Integer> result = numbers.stream().distinct().sorted(Comparator.naturalOrder()).toList();
 		System.out.println(result);
 	}
 	
+	/**
+	 * Demonstrates {@link Collectors#partitioningBy(java.util.function.Predicate)}:
+	 * first partitions numbers by a "greater than 3" predicate while counting each
+	 * partition, then partitions a separate list into even/odd buckets and prints
+	 * each partition's contents.
+	 */
 	public void partitionBy() {
 		Map<Boolean, Long> result =
 			    Stream.of(1,2,3,4,5,6)
@@ -52,6 +72,12 @@ public class JavaStreams {
 			}
 	}
 	
+	/**
+	 * Demonstrates {@link Collectors#groupingBy} in three forms: grouping employees by
+	 * department while mapping to names, grouping names by their length while counting
+	 * occurrences, and grouping employees by department while summarizing their salaries
+	 * with {@link Collectors#summarizingInt}.
+	 */
 	public void groupingBy() {
 		record Employee(String name, String department) {}
 
@@ -106,6 +132,10 @@ public class JavaStreams {
 		
 	}
 	
+	/**
+	 * Collects a stream of employees into a {@code Map} keyed by id with the employee
+	 * name as the value, using {@link Collectors#toMap}.
+	 */
 	public void streamtoMAP() {
 		record Employee(int id, String name) {}
 
@@ -119,6 +149,10 @@ public class JavaStreams {
 		
 	}
 	
+	/**
+	 * Finds the employee with the highest salary using
+	 * {@code Stream.max(Comparator.comparing(...))}.
+	 */
 	public void findMax() {
 		record Employee(String name, int salary) {}
 
@@ -132,6 +166,11 @@ public class JavaStreams {
 		result.ifPresent(emp->System.out.print(emp.name+"-"+emp.salary));
 		
 	}
+	/**
+	 * Flattens a list of lists of integers into a single list using
+	 * {@link java.util.stream.Stream#flatMap}, shown both with a lambda and a method
+	 * reference.
+	 */
 	public void flatMap() {
 		List<List<Integer>> numbers = List.of(
 			    List.of(1, 2, 3),
@@ -146,6 +185,11 @@ public class JavaStreams {
 			    .toList();
 		
 	}
+	/**
+	 * Uses {@code flatMap} to combine each employee's list of tasks into one flat list
+	 * of all company tasks, then separately maps each employee's name to their own
+	 * list of tasks.
+	 */
 	public void flatMapExample1() {
 	    // Record where each employee has a List of tasks
 	    record Employee(String name, List<String> tasks) {}
@@ -167,6 +211,10 @@ public class JavaStreams {
 		System.out.println(employeesduties);
 	}
 	
+	/**
+	 * Splits each sentence into words and flattens the resulting arrays into a single
+	 * list of words using {@code flatMap}.
+	 */
 	public void faltMapExample2() {
 		List<String> sentences = List.of(
 			    "Java Spring",
@@ -180,6 +228,9 @@ public class JavaStreams {
 			    .toList();
 	}
 	
+	/**
+	 * Skips the first 3 elements of a list and then limits the result to 4 elements.
+	 */
 	public void skipandLimit() {
 		List<Integer> numbers =
 			    List.of(10, 20, 30, 40, 50, 60, 70, 80, 90);
@@ -187,6 +238,10 @@ public class JavaStreams {
 		System.out.println(results);
 		
 	}
+	/**
+	 * Filters numbers greater than 10 and divisible by 3 (using chained filters and a
+	 * combined predicate), then squares the results.
+	 */
 	public void filterandMap() {
 		List<Integer> numbers =
 			    List.of(3, 6, 9, 12, 15, 18, 20, 21);
@@ -195,6 +250,9 @@ public class JavaStreams {
 		List<Integer> result1= numbers.stream().filter(n -> n > 10 && n % 3 == 0).map(n->n*n).toList();
 		
 	}
+	/**
+	 * Sorts numbers in descending order and limits the result to the top 3 values.
+	 */
 	public void sortAndLimit() {
 		List<Integer> numbers =
 			    List.of(40, 10, 90, 30, 70, 50, 80);
@@ -202,6 +260,12 @@ public class JavaStreams {
 		System.out.println(result);
 	}
 	
+	/**
+	 * Demonstrates {@link java.util.stream.Stream#takeWhile}: takes elements while
+	 * they are below 50 (stopping at the first element that fails, even if later
+	 * elements would pass), and separately takes even numbers into a primitive
+	 * {@code int[]} array.
+	 */
 	public void takwhile() {
 		List<Integer> numbers =
 			    List.of(10, 20, 30, 40, 50, 25, 60);
@@ -213,6 +277,11 @@ public class JavaStreams {
 		System.out.println(Arrays.toString(array));
 	}
 	
+	/**
+	 * Demonstrates {@link java.util.stream.Stream#dropWhile}: drops elements from the
+	 * start of the stream while they are below 40, keeping everything from the first
+	 * element that fails the condition onward.
+	 */
 	public void dropwhile() {
 		List<Integer> numbers =
 			    List.of(10, 20, 30, 40, 50, 25, 60);
@@ -220,6 +289,10 @@ public class JavaStreams {
 		System.out.println("drop everything until I encounter exactly 40");
 		System.out.println(result);
 	}
+	/**
+	 * Maps each word to its length and sums the lengths using
+	 * {@link java.util.stream.Stream#mapToInt}.
+	 */
 	public void mapToIntAndSum() {
 		List<String> words =
 			    List.of("Java", "Spring", "AWS");
@@ -228,6 +301,10 @@ public class JavaStreams {
 		
 	}
 	
+	/**
+	 * Finds the first number greater than 50, both unwrapping the {@link Optional}
+	 * directly and using {@code orElse} to supply a default when absent.
+	 */
 	public void filterAndFind() {
 		List<Integer> numbers =
 			    List.of(10, 30, 55, 70, 90);
@@ -242,12 +319,21 @@ public class JavaStreams {
 		
 	}
 	
+	/**
+	 * Uses {@link java.util.stream.Stream#peek} to print each element as it flows
+	 * through the pipeline, then filters values greater than 2 and multiplies them
+	 * by 10.
+	 */
 	public void peekFilterMap() {
 		List<Integer> numbers = List.of(1, 2, 3, 4);
 		List<Integer> result = numbers.stream().peek(System.out::println).filter(n->n>2).map(n->n*10).toList();
 		System.out.println(result);
 	}
 	
+	/**
+	 * Filters names longer than 4 characters, maps them to their lengths, and sorts
+	 * the resulting lengths in natural order.
+	 */
 	public void mapFilterSorted() {
 		List<String> names =
 			    List.of("Tom", "Spring", "Java", "Docker", "AWS", "Kafka");
@@ -257,6 +343,12 @@ public class JavaStreams {
 		
 	}
 
+	/**
+	 * Collects names into a map keyed by string length, merging colliding values by
+	 * concatenating them with {@link Collectors#toMap} (merge function), and
+	 * separately achieves a similar grouped concatenation with
+	 * {@link Collectors#groupingBy} combined with {@link Collectors#joining}.
+	 */
 	public void ToMapAndConcat() {
 		List<String> names =
 				List.of("Tom", "Bob", "Sam", "Alice");
@@ -267,7 +359,10 @@ public class JavaStreams {
 		System.out.println(result);
 	}
 
-	// once it conditions met and find first it stops executing.
+	/**
+	 * Demonstrates short-circuiting behavior of {@code findFirst()}: once the filter
+	 * condition is met for an element, the stream stops processing further elements.
+	 */
 	public void findFrist(){
 		Optional<Integer> result =
 				Stream.of(1, 2,3, 4, 5)
@@ -280,6 +375,10 @@ public class JavaStreams {
 		System.out.println(":" + result.get());
 	}
 
+	/**
+	 * Finds the elements in an {@code int[]} array that occur exactly once, by
+	 * grouping and counting occurrences and then filtering to counts equal to 1.
+	 */
 	public  void getUnique(){
 		int[] nums = {1, 2, 2, 3, 4, 4, 5};
 		Map<Integer,Long> counts = Arrays.stream(nums).boxed().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
@@ -288,11 +387,20 @@ public class JavaStreams {
 
 	}
 
+	/**
+	 * Generates a bounded sequence of numbers using
+	 * {@link java.util.stream.Stream#iterate(Object, java.util.function.Predicate, java.util.function.UnaryOperator)},
+	 * starting at 1, incrementing by 2, while the value stays below 10.
+	 */
 	public void streamIterator() {
 		List<Integer> stream = Stream.iterate(1, n->n<10,n -> n+2).toList();
 		System.out.println(stream);
 	}
 
+	/**
+	 * Counts occurrences of each value in an {@code int[]} array using
+	 * {@link Collectors#groupingBy} with {@link Collectors#counting}.
+	 */
 	public void groupingByAndSortedMap(){
 		int[] array = {10,10,1,1,2,3,3,3,4,4,5,6,6,6,7,8,9,9};
 		//
@@ -301,6 +409,10 @@ public class JavaStreams {
 		System.out.println(mapCount);
 	}
 
+	/**
+	 * Filters out {@code null} and blank/whitespace-only strings from a
+	 * {@code String[]}, collecting the remaining values back into an array.
+	 */
 	public void removeSpaceObjectNullAndNextraBlanks(){
 		String[] stringArray = {"java",""," ",null,"C++","goLang"};
 		String[] result = Arrays.stream(stringArray).filter(str->str!=null && !str.isBlank()).toArray(String[]::new);
@@ -333,6 +445,12 @@ public class JavaStreams {
 
 	}
 
+	/**
+	 * Computes the average of a list of numbers using both
+	 * {@link Collectors#averagingDouble} and {@code mapToDouble(...).average()},
+	 * checks whether all numbers are positive with {@code allMatch}, and partitions
+	 * the numbers into even/odd buckets.
+	 */
 	public void average(){
 		List<Integer> numbers = Arrays.asList(5,10,15,20,25);
 		Double average= numbers.stream().collect(Collectors.averagingDouble(Integer::intValue));
@@ -344,6 +462,11 @@ public class JavaStreams {
 		Map<Boolean,List<Integer>> addEven = numbers.stream().collect(Collectors.partitioningBy(n->n%2==0));
 		System.out.println(addEven);
 	}
+	/**
+	 * Reverses the word order of a sentence (trimming excess whitespace) using
+	 * {@link IntStream#rangeClosed} to walk the split words backwards and rejoin
+	 * them with spaces.
+	 */
 	public void reverseTheSentence(){
 		String input = "searching for my laptop      ";
 		String[] stringArray = input.trim().split("\\s+");
@@ -353,6 +476,10 @@ public class JavaStreams {
 		System.out.println(newinput);
 	}
 
+    /**
+     * Finds the second-largest distinct value in an {@code int[]} array by sorting
+     * distinct values in descending order and skipping the first one.
+     */
     public  void findSecondMaxInArray(){
 		int[] nums = {10, 40, 20, 50, 40, 30, 50};
 		int secondMax = Arrays.stream(nums).boxed().distinct()
@@ -360,6 +487,10 @@ public class JavaStreams {
 		System.out.println(secondMax);
 	}
 	
+	/**
+	 * Runs each of the demonstration methods above in sequence, printing their
+	 * output to standard out.
+	 */
 	public static void main(String[] args) {
 		JavaStreams jstreams = new JavaStreams();
 		jstreams.evenNumberAndMultiply();
