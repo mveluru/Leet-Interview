@@ -510,7 +510,12 @@ public class JavaStreams {
 						Collectors.maxBy(Comparator.comparingInt(Employee::salary)), // Compare by salary int
 						Optional::get)));
 		highestPaid.forEach((dept,emp)->System.out.println(dept + " -> " + emp.name() + ", " + emp.salary())  );
+		// intSummaryStatistics
+		Map<String, IntSummaryStatistics> summingInt = employees.stream().collect(Collectors.groupingBy(Employee::department,Collectors.summarizingInt(Employee::salary)));
+		summingInt.forEach((dept,intsummary)->System.out.println(dept+"->"+intsummary.getSum()));
 	}
+
+
 	public static void main(String[] args) {
 		JavaStreams jstreams = new JavaStreams();
 		jstreams.evenNumberAndMultiply();
