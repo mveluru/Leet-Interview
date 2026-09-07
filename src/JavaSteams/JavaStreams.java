@@ -488,10 +488,12 @@ public class JavaStreams {
 	}
 	
 	/**
-	 * Runs each of the demonstration methods above in sequence, printing their
-	 * output to standard out.
+	 * Groups employees by department (collecting names), finds the highest-paid
+	 * employee per department using {@link Collectors#maxBy} combined with
+	 * {@link Collectors#collectingAndThen}, and separately sums salaries per
+	 * department using both {@link Collectors#summarizingInt} and
+	 * {@link Collectors#summingInt}.
 	 */
-
 	public void findMaxSalaray(){
 		record Employee(String name, String department, int salary) {}
 
@@ -518,6 +520,10 @@ public class JavaStreams {
 		summingInts.forEach((dept,saltotal)->System.out.println(dept+"->"+saltotal));
 	}
 
+	/**
+	 * Finds the values in a list that occur more than once, by grouping and counting
+	 * occurrences and then filtering for counts greater than 1.
+	 */
 	public void occurenceMoreThanOnce(){
 		List<Integer> numbers = List.of(10, 20, 30, 20, 40, 10, 50, 30);
 		Map<Integer,Long> nums = numbers.stream().collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
@@ -525,6 +531,30 @@ public class JavaStreams {
 		System.out.println(occurengreaterThan1);
 	}
 
+	/**
+	 * Finds the most frequently occurring word in a sentence, by grouping and
+	 * counting word occurrences and then taking the entry with the highest count
+	 * via {@link Map.Entry#comparingByValue()}.
+	 */
+	public void maxOccurence(){
+		String sentence = "java spring java aws spring java docker aws";
+		Map<String,Long> groupingby = Arrays.stream(sentence.split("\\s+")).collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+
+
+		// 2. Find the entry with the highest count value
+		Optional<Map.Entry<String, Long>> maxEntry = groupingby.entrySet().stream()
+				.max(Map.Entry.comparingByValue());
+
+		// Print the result
+		// Output: java -> 3
+		maxEntry.ifPresent(entry ->
+				System.out.println(entry.getKey() + " -> " + entry.getValue()));
+	}
+
+	/**
+	 * Runs each of the demonstration methods above in sequence, printing their
+	 * output to standard out.
+	 */
 	public static void main(String[] args) {
 		JavaStreams jstreams = new JavaStreams();
 		jstreams.evenNumberAndMultiply();
