@@ -518,6 +518,12 @@ public class JavaStreams {
 		summingInts.forEach((dept,saltotal)->System.out.println(dept+"->"+saltotal));
 	}
 
+	public void occurenceMoreThanOnce(){
+		List<Integer> numbers = List.of(10, 20, 30, 20, 40, 10, 50, 30);
+		Map<Integer,Long> nums = numbers.stream().collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+		List<Integer> occurengreaterThan1 = nums.entrySet().stream().filter(entry->entry.getValue()>1).map(Map.Entry::getKey).toList();
+		System.out.println(occurengreaterThan1);
+	}
 
 	public static void main(String[] args) {
 		JavaStreams jstreams = new JavaStreams();
