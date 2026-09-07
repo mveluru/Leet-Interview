@@ -513,6 +513,9 @@ public class JavaStreams {
 		// intSummaryStatistics
 		Map<String, IntSummaryStatistics> summingInt = employees.stream().collect(Collectors.groupingBy(Employee::department,Collectors.summarizingInt(Employee::salary)));
 		summingInt.forEach((dept,intsummary)->System.out.println(dept+"->"+intsummary.getSum()));
+
+		Map<String, Integer> summingInts = employees.stream().collect(Collectors.groupingBy(Employee::department,Collectors.summingInt(Employee::salary)));
+		summingInts.forEach((dept,saltotal)->System.out.println(dept+"->"+saltotal));
 	}
 
 
