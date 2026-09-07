@@ -491,6 +491,26 @@ public class JavaStreams {
 	 * Runs each of the demonstration methods above in sequence, printing their
 	 * output to standard out.
 	 */
+
+	public void findMaxSalaray(){
+		record Employee(String name, String department, int salary) {}
+
+		List<Employee> employees = List.of(
+				new Employee("John", "IT", 90000),
+				new Employee("Mike", "IT", 85000),
+				new Employee("Sara", "HR", 70000),
+				new Employee("Emma", "HR", 75000),
+				new Employee("David", "Finance", 95000)
+		);
+		Map<String,List<String>> groupingBy = employees.stream()
+				.collect(Collectors.groupingBy(Employee::department,Collectors.mapping(Employee::name, Collectors.toList())));
+		//System.out.print(groupingBy);
+		Map<String,Employee> highestPaid = employees.stream()
+				.collect(Collectors.groupingBy(Employee::department,Collectors.collectingAndThen(
+						Collectors.maxBy(Comparator.comparingInt(Employee::salary)), // Compare by salary int
+						Optional::get)));
+		highestPaid.forEach((dept,emp)->System.out.println(dept + " -> " + emp.name() + ", " + emp.salary())  );
+	}
 	public static void main(String[] args) {
 		JavaStreams jstreams = new JavaStreams();
 		jstreams.evenNumberAndMultiply();
