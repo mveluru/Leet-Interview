@@ -353,7 +353,12 @@ public class JavaStreams {
 		System.out.println(newinput);
 	}
 
-
+    public  void findSecondMaxInArray(){
+		int[] nums = {10, 40, 20, 50, 40, 30, 50};
+		int secondMax = Arrays.stream(nums).boxed().distinct()
+				.sorted(Comparator.reverseOrder()).skip(1).mapToInt(Integer::intValue).findFirst().orElse(0);
+		System.out.println(secondMax);
+	}
 	
 	public static void main(String[] args) {
 		JavaStreams jstreams = new JavaStreams();
@@ -380,6 +385,7 @@ public class JavaStreams {
 		jstreams.getUnique();
 		jstreams.average();
 		jstreams.reverseTheSentence();
+		jstreams.findSecondMaxInArray();
 		
 	}
 
