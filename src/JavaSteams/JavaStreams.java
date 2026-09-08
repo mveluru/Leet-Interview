@@ -482,6 +482,7 @@ public class JavaStreams {
      */
     public  void findSecondMaxInArray(){
 		int[] nums = {10, 40, 20, 50, 40, 30, 50};
+		//int[] nums = {12, 35, 1, 10, 34, 1};
 		int secondMax = Arrays.stream(nums).boxed().distinct()
 				.sorted(Comparator.reverseOrder()).skip(1).mapToInt(Integer::intValue).findFirst().orElse(0);
 		System.out.println(secondMax);
@@ -560,6 +561,16 @@ public class JavaStreams {
 		//find first dups break the loop
 		Integer duplicateElement = Arrays.stream(nums).boxed().filter(n->!nonDups.add(n)).findFirst().orElse(-1);
 		System.out.println(duplicateElement);
+
+		// using loop
+		Set<Integer> seen = new HashSet<>();
+
+		for (int num : nums) {
+			if (!seen.add(num)) {
+				System.out.println(num);
+				break;
+			}
+		}
 	}
 
 	/**
