@@ -573,6 +573,21 @@ public class JavaStreams {
 		}
 	}
 
+	public void findDuplicate(){
+		String input = "programming";
+
+		// 1. Fixed: Change to Set<Integer> to match input.chars() ASCII stream
+		Set<Integer> hashSet = new HashSet<>();
+
+		Set<String> set = input.chars()
+				.filter(c -> !hashSet.add(c)) // 2. Filters out first occurrences
+				.mapToObj(c -> String.valueOf((char) c)) // 3. Fixed: mapToObj converts int to String
+				.collect(Collectors.toCollection(LinkedHashSet::new)); // 4. Fixed lowercase typo
+
+		// Output: [r, g, m]
+		System.out.println(set);
+	}
+
 	/**
 	 * Runs each of the demonstration methods above in sequence, printing their
 	 * output to standard out.
