@@ -12,9 +12,7 @@ public class CompressionStringAndBuilder {
             // If it's the last character or different from the next one
             if (i == chars.length - 1 || chars[i] != chars[i + 1]) {
                 sb.append(chars[i]);
-                if (count > 1) {
                     sb.append(count);
-                }
                 count = 1; // Reset count
             } else {
                 count++;
