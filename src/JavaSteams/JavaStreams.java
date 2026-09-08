@@ -586,6 +586,23 @@ public class JavaStreams {
 
 		// Output: [r, g, m]
 		System.out.println(set);
+		Set<Character> hashSets = new  HashSet<>();
+
+        // Manually looping
+		StringBuilder  sb = new StringBuilder();
+		for(char c: input.toCharArray()) {
+			if (!hashSets.add(c)) {
+				System.out.println(c);
+
+			}else {
+				sb.append(c);
+			}
+
+		}
+
+		System.out.println(sb.toString());
+
+
 	}
 
 	/**
