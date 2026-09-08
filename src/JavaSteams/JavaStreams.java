@@ -551,6 +551,17 @@ public class JavaStreams {
 				System.out.println(entry.getKey() + " -> " + entry.getValue()));
 	}
 
+	public static void findDuplicateElement(){
+		int[] nums = {5, 3, 8, 2, 3, 7, 5};
+		Set<Integer> nonDups = new HashSet<>();
+		Set<Integer> dups = Arrays.stream(nums).boxed().filter(n->!nonDups.add(n)).collect(Collectors.toCollection(LinkedHashSet::new));
+
+		System.out.println(dups);
+		//find first dups break the loop
+		Integer duplicateElement = Arrays.stream(nums).boxed().filter(n->!nonDups.add(n)).findFirst().orElse(-1);
+		System.out.println(duplicateElement);
+	}
+
 	/**
 	 * Runs each of the demonstration methods above in sequence, printing their
 	 * output to standard out.
