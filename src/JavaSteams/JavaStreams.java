@@ -605,6 +605,40 @@ public class JavaStreams {
 
 	}
 
+	public void getLengthOfEachWord(){
+		String input = "Java Spring Microservices AWS";
+		String[] inputArray = input.split("\\s+");
+		Map<Integer,List<String>> map =
+				Arrays.stream(inputArray).collect(Collectors.groupingBy(String::length));
+
+		//OR
+		Map<String,Integer> map1 = Arrays.stream(inputArray).collect(Collectors.toMap(
+				word->word,String::length
+		));
+		System.out.println(map);
+		System.out.println(map1);
+
+		//
+		// Step 1: Collect into a Map using Collectors.toMap
+		Map<String, Integer> wordLengthMap = Arrays.stream(input.split("\\s+"))
+				.collect(Collectors.toMap(
+						word -> word,          // Key: The word itself
+						String::length,        // Value: The length of the word
+						(existing, replacement) -> existing // Merge rule for duplicate words
+				));
+
+		// Step 2: Stream the map entries to find the max value
+		Optional<Map.Entry<String, Integer>> maxEntry = wordLengthMap.entrySet().stream()
+				.max(Map.Entry.comparingByValue());
+
+		// Output results
+		maxEntry.ifPresent(entry -> {
+			System.out.println("Max Word: " + entry.getKey());   // Output: Microservices
+			System.out.println("Max Length: " + entry.getValue()); // Output: 13
+		});
+
+	}
+
 	/**
 	 * Runs each of the demonstration methods above in sequence, printing their
 	 * output to standard out.
@@ -635,6 +669,7 @@ public class JavaStreams {
 		jstreams.average();
 		jstreams.reverseTheSentence();
 		jstreams.findSecondMaxInArray();
+		jstreams.getLengthOfEachWord();
 		
 	}
 
