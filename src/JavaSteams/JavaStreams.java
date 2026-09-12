@@ -129,6 +129,12 @@ public class JavaStreams {
 			    
 			    // Your logic here (e.g., stats.getAverage(), stats.getMax())
 			}
+
+		List<String> namelist =
+				List.of("John", "Adam", "Jennifer", "Alex", "James", "Amanda");
+		Map<Integer, List<String>> groupingByLength = namelist.stream()
+				.collect(Collectors.groupingBy(String::length, Collectors.toList()));
+		System.out.println(groupingByLength);
 		
 	}
 	
