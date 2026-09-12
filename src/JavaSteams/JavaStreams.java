@@ -662,6 +662,12 @@ public class JavaStreams {
 		List<String> upperCaseWords = words.stream().filter(str->str.length()>5).map(String::toUpperCase)
 				.sorted(Comparator.comparingInt(String::length).reversed()).toList();
 		System.out.println(upperCaseWords);
+
+		List<String> names =
+				List.of("John", "Adam", "Jennifer", "Alex", "James", "Amanda");
+		String string = names.stream().filter(str->str.startsWith("A"))
+				.sorted(Comparator.comparingInt(String::length)).collect(Collectors.joining(","));
+		System.out.println(string);
 	}
 
 	/**
