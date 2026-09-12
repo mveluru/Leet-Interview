@@ -670,6 +670,13 @@ public class JavaStreams {
 		System.out.println(string);
 	}
 
+	public static void averaging(){
+		List<Integer> numbers =
+				List.of(10, 20, 30, 40, 50, 60);
+		double average = numbers.stream().filter(n->n>30).collect(Collectors.averagingDouble(Integer::doubleValue)).doubleValue();
+		System.out.println(average);
+	}
+
 	/**
 	 * Runs each of the demonstration methods above in sequence, printing their
 	 * output to standard out.
