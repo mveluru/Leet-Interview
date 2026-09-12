@@ -656,6 +656,14 @@ public class JavaStreams {
 		System.out.println(totalAmt);
 	}
 
+	public void stringGreaterFiveandPringReverseOderbyLenght(){
+		List<String> words =
+				List.of("java", "spring", "aws", "microservices", "sql", "docker");
+		List<String> upperCaseWords = words.stream().filter(str->str.length()>5).map(String::toUpperCase)
+				.sorted(Comparator.comparingInt(String::length).reversed()).toList();
+		System.out.println(upperCaseWords);
+	}
+
 	/**
 	 * Runs each of the demonstration methods above in sequence, printing their
 	 * output to standard out.
