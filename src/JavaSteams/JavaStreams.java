@@ -124,11 +124,13 @@ public class JavaStreams {
 			    	System.out.println(department+"->"+stats.getSum());
 			    	
 			    }
-			    
-			   
-			    
 			    // Your logic here (e.g., stats.getAverage(), stats.getMax())
 			}
+
+			// to print salary Sum {HR=170000, IT=220000}
+		Map<String,Integer> groupingByDept = employees1.stream()
+				.collect(Collectors.groupingBy(Employee1::department,Collectors.summingInt(Employee1::salary)));
+		System.out.println(groupingByDept);
 
 		List<String> namelist =
 				List.of("John", "Adam", "Jennifer", "Alex", "James", "Amanda");
