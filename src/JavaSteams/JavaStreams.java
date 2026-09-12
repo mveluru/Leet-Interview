@@ -639,6 +639,12 @@ public class JavaStreams {
 
 	}
 
+	public void moveZeroesToEnd(){
+		List<Integer> nums = List.of(1,0,-3,0,5,-2,0,8,0,-4);
+		List<Integer> moveZeroes = Stream.concat(nums.stream().filter(n->n!=0), nums.stream().filter(n->n==0)).collect(Collectors.toList());
+		System.out.println(moveZeroes);
+	}
+
 	/**
 	 * Runs each of the demonstration methods above in sequence, printing their
 	 * output to standard out.
@@ -670,6 +676,7 @@ public class JavaStreams {
 		jstreams.reverseTheSentence();
 		jstreams.findSecondMaxInArray();
 		jstreams.getLengthOfEachWord();
+		jstreams.moveZeroesToEnd();
 		
 	}
 

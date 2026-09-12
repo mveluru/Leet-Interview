@@ -2,6 +2,8 @@ package leetcode75.easy;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MovesZeros {
 
@@ -59,6 +61,13 @@ public class MovesZeros {
             insertposition++;
         }
         System.out.println(Arrays.toString(nums));
+    }
+
+    public static void moveZeroesToEndDontcreateNewArray() {
+
+        List<Integer> nums = List.of(1,0,-3,0,5,-2,0,8,0,-4);
+        List<Integer> moveZeroes = Stream.concat(nums.stream().filter(n->n!=0), nums.stream().filter(n->n==0)).collect(Collectors.toList());
+        System.out.println(moveZeroes);
     }
 
     public static void main(String[] args) {
