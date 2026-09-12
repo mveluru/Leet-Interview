@@ -644,6 +644,17 @@ public class JavaStreams {
 		List<Integer> moveZeroes = Stream.concat(nums.stream().filter(n->n!=0), nums.stream().filter(n->n==0)).collect(Collectors.toList());
 		System.out.println(moveZeroes);
 	}
+	public void  transactionSum(){
+		record Transaction(String type,double amount){};
+		List<Transaction> transactions = List.of(
+				new Transaction("BUY", 500),
+				new Transaction("SELL", 300),
+				new Transaction("BUY", 200)
+		);
+		double totalAmt = transactions.stream().filter(t->t.type().equals("BUY"))
+				.mapToDouble(Transaction::amount).sum();
+		System.out.println(totalAmt);
+	}
 
 	/**
 	 * Runs each of the demonstration methods above in sequence, printing their
