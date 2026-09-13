@@ -43,6 +43,23 @@ public class AdduniqueElements {
         return sum;
     }
 
+    public void addNonRepeat(int[] nums) {
+        //int[] input = {1,2,3,2,3};
+        Map<Integer,Long> countMap = Arrays.stream(nums).boxed()
+                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+        int sum = countMap.entrySet().stream()
+                .filter(entry -> entry.getValue() == 1)
+                .mapToInt(Map.Entry::getKey)
+                .sum();
+
+        var noDuplicates = countMap.entrySet().stream()
+                .filter(entry->entry.getValue()==1).map(Map.Entry::getKey)
+                .toList();
+        System.out.println("Frequency Map: " + countMap);
+        System.out.println("Strictly non-duplicate elements: " + noDuplicates);
+        System.out.println("Sum of non-duplicates: " + sum);
+    }
+
 
     public static void main(String[] args) {
 
