@@ -1,6 +1,7 @@
 package leetcode75.easy;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class CommonInteger {
     public static void commonList(List<Integer> l1, List<Integer> l2) {
@@ -20,6 +21,22 @@ public class CommonInteger {
         System.out.println("common "+list1.retainAll(list2));
         List<Integer> list3 = list1.stream().filter(list2::contains).toList();
         System.out.println("Common elements: "+list3);
+
+
+        // common Integers
+        int[] input01 = {2, 7, 17, 19, 20, 45, 56, 159, 239};
+        int[] input02 = {7, 12, 15, 19, 22, 34, 55, 150, 159};
+
+        // Convert array 2 to a Set for O(1) contains checks
+        Set<Integer> set2 = Arrays.stream(input02).boxed().collect(Collectors.toSet());
+
+        // Filter array 1 elements that exist in set 2
+        int[] commonElements = Arrays.stream(input01)
+                .filter(set2::contains)
+                .toArray();
+
+        System.out.println(Arrays.toString(commonElements));
+        // Output: [7, 19, 159]
 
         // Merge & distinct and sort
         List<Integer> list4 = new ArrayList<>();
