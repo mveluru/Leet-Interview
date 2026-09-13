@@ -106,6 +106,9 @@ public class JavaStreams_Mixed {
 		
 		List<Integer> results = values.stream().map(String::valueOf)
 				.filter(s->s.matches("\\d+")).mapToInt(Integer::parseInt).boxed().toList();
+
+		int[] intArray= values.stream().filter(Integer.class::isInstance)
+				.map(Integer.class::cast).mapToInt(Integer::intValue).toArray();
 	}
 	
 	/**
