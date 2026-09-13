@@ -685,6 +685,23 @@ public class JavaStreams {
 		System.out.println(average);
 	}
 
+	//Comparator with multiple fields
+	//Sort by salary descending, then name ascending when salaries tie.
+	public void comparatorComparing(){
+		record Employee(String name, int salary) {}
+		List<Employee> employees = List.of(
+				new Employee("Mike", 90000),
+				new Employee("John", 90000),
+				new Employee("Adam", 100000),
+				new Employee("Sam", 80000)
+		);
+
+		List<Employee> emp = employees.stream()
+				.sorted(Comparator.comparingInt(Employee::salary)
+						.reversed().thenComparing(Employee::name)).toList();
+		System.out.println(emp);
+	}
+
 	/**
 	 * Runs each of the demonstration methods above in sequence, printing their
 	 * output to standard out.
