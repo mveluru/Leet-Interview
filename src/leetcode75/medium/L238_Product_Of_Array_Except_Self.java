@@ -3,7 +3,7 @@ package leetcode75.medium;
 
 import java.util.Arrays;
 
-public class Product_Of_Array_Except_Self {
+public class L238_Product_Of_Array_Except_Self {
 
     public static void  productExceptSelf(int[] nums) {
 
