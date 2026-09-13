@@ -11,7 +11,7 @@ public class IndexOfFirstOccurrence {
                     String substring = haystack.substring(i, i + needleLength);
                     if (needle.equals(substring)) {
                         //System.out.println(substring);
-                        System.out.println("start_index : " + (i) + " end_index  " + ((i + needleLength - 1)));
+                        System.out.println("Beginning_index : " + (i) + " end_index  " + ((i + needleLength - 1)));
                         break;
                     }
 
@@ -27,9 +27,18 @@ public class IndexOfFirstOccurrence {
     private static void firstoccurence2(String haystack, String needle) {
         if (haystack.toLowerCase().contains(needle.toLowerCase())) {
             int start_index = haystack.indexOf(needle);
-            System.out.println("start_index : " + start_index + " end_index: " + (start_index + needle.length() - 1));
+            System.out.println("Beginning_index : " + start_index + " end_index: " + (start_index + needle.length() - 1));
         } else {
             System.out.println(-1);
+        }
+    }
+
+
+    private static void firstoccurence3(String haystack, String needle) {
+        int index = haystack.indexOf(needle);
+        int len = needle.length();
+        if (haystack.substring(index, index+len).equals(needle)) {
+            System.out.println("Beginning Index " +index+"  ending Index "+(index+len-1));
         }
     }
 
@@ -47,5 +56,6 @@ public class IndexOfFirstOccurrence {
 
         IndexOfFirstOccurrence.firstoccurence1(haystack, needle);
         IndexOfFirstOccurrence.firstoccurence2(haystack, needle);
+        IndexOfFirstOccurrence.firstoccurence3(haystack, needle);
     }
 }
