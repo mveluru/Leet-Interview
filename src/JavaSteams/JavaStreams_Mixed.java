@@ -129,6 +129,22 @@ public class JavaStreams_Mixed {
 		System.out.println(result);
 		
 	}
+
+	public void numberAndString() {
+		List<Object> values =
+				List.of("Java", 10, "Spring", 20, 30, "AWS");
+		List<Object> objects = values.stream().map(obj->{
+			if (obj instanceof String str) {
+				return str.toUpperCase();
+			}else if (obj instanceof Integer num) {
+				return num *10;
+			}
+			return obj;
+
+		}).toList();
+		System.out.println(objects);
+		//[JAVA, 100, SPRING, 200, 300, AWS]
+	}
 	
 	/**
 	 * Transforms a mixed-type list using pattern-matching {@code instanceof}:
