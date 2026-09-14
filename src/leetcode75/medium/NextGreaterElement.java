@@ -13,6 +13,14 @@ public class NextGreaterElement {
         // Loop through the array from left to right
         for (int i = 0; i < nums1.length; i++) {
 
+
+            // logs to understand
+            if(!stack.isEmpty()){
+                System.out.println("peek element index   "+stack.peek());
+            }else{
+                System.out.println("peek element index   "+ true);
+            }
+
             /*
              * While the stack is not empty and the current element
              * is larger than the element at the index on top of the stack:
