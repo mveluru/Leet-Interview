@@ -9,7 +9,8 @@ public class ValidParentheses {
         for (char c : s.toCharArray()) {
             if (c == '(' || c == '{' || c == '[') {
                 stack.push(c);
-            } else {
+                continue;
+            }
                 if (stack.isEmpty()) {
                     return false;
                 }
@@ -23,7 +24,7 @@ public class ValidParentheses {
                     return false;
                 }
             }
-        }
+
 
         return stack.isEmpty();
     }
