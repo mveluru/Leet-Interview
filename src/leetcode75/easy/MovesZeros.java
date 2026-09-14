@@ -75,6 +75,7 @@ public class MovesZeros {
         int[] nums = {0, 5, 0, 3, 8, 0, 2};
         moveZeroes(nums1);
         MoveZeroesToEndDontcreateNewArray(nums);
+        moveZeroesToEndDontcreateNewArray();
     }
 
 }
