@@ -664,6 +664,7 @@ public class JavaStreams {
 		System.out.println(totalAmt);
 	}
 
+	//Important
 	public void stringGreaterFiveandPringReverseOderbyLenght(){
 		List<String> words =
 				List.of("java", "spring", "aws", "microservices", "sql", "docker");
@@ -676,6 +677,18 @@ public class JavaStreams {
 		String string = names.stream().filter(str->str.startsWith("A"))
 				.sorted(Comparator.comparingInt(String::length)).collect(Collectors.joining(","));
 		System.out.println(string);
+
+		Map<String, Integer> scores = Map.of(
+				"John", 85,
+				"Mike", 92,
+				"Adam", 78,
+				"Sara", 96
+		);
+		Map<String,Integer> scoreResults = scores.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
+		System.out.println(scoreResults);
+		Map.Entry<String, Integer> highScore =
+				scoreResults.entrySet().stream().max(Comparator.comparingInt(Map.Entry::getValue)).orElseThrow();
+		System.out.println(highScore.getKey() + " -> " + highScore.getValue());
 
 
 	}
