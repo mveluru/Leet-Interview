@@ -739,6 +739,29 @@ public class JavaStreams {
 		System.out.println(getKeys);
 	}
 
+	// Merge
+	public void printMapvalueSummingUsingMerge(){
+		record Employee(String department, int salary) {}
+
+		List<Employee> employees = List.of(
+				new Employee("IT", 90000),
+				new Employee("HR", 70000),
+				new Employee("IT", 110000),
+				new Employee("HR", 80000),
+				new Employee("Finance", 95000)
+		);
+		Map<String,Integer> results = employees.stream()
+				.collect(Collectors.groupingBy(Employee::department,Collectors.summingInt(Employee::salary)));
+		System.out.println(results);
+
+		Map<String,Integer> results1 = employees.stream()
+				.collect(Collectors.toMap(Employee::department, Employee::salary, Integer::sum));
+		System.out.println(results1);
+		Map<String,Integer> results2 = employees.stream()
+				.collect(Collectors.toMap(Employee::department, Employee::salary,(a,b)->a+b));
+		System.out.println(results2);
+	}
+
 	/**
 	 * Runs each of the demonstration methods above in sequence, printing their
 	 * output to standard out.
