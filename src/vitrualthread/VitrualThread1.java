@@ -81,6 +81,7 @@ public class VitrualThread1 {
 				        .thenApply(x -> x * 2);
 
 				System.out.println(future.join());
+				//30
 		
 	}
 	
