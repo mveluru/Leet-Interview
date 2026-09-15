@@ -733,6 +733,15 @@ public class JavaStreams {
 		Map<String,Integer> results = salaries.entrySet().stream()
 				.filter(sal->sal.getValue()>=10000).collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
 		System.out.println(results);
+
+		int[] nums = {1, 2, 2, 3, 4, 4, 5};
+		Map<Integer,Long> map = Arrays.stream(nums).boxed().collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+		Map<Integer,Long> result = map.entrySet().stream().filter(entry-> entry.getValue()==1)
+				.collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
+		System.out.println(result);
+		int total = result.entrySet().stream().collect(Collectors.summingInt(Map.Entry::getKey));
+		int total1 = result.keySet().stream().mapToInt(i -> i).sum();
+
 	}
 
 	//List → Map → Stream Map → List
@@ -767,6 +776,7 @@ public class JavaStreams {
 				.collect(Collectors.toMap(Employee::department, Employee::salary,(a,b)->a+b));
 		System.out.println(results2);
 	}
+
 
 	/**
 	 * Runs each of the demonstration methods above in sequence, printing their
