@@ -676,6 +676,8 @@ public class JavaStreams {
 		String string = names.stream().filter(str->str.startsWith("A"))
 				.sorted(Comparator.comparingInt(String::length)).collect(Collectors.joining(","));
 		System.out.println(string);
+
+
 	}
 
 	public static void averaging(){
@@ -712,6 +714,16 @@ public class JavaStreams {
 		Map<String,Integer> results = salaries.entrySet().stream()
 				.filter(sal->sal.getValue()>=10000).collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
 		System.out.println(results);
+	}
+
+	//List → Map → Stream Map → List
+	public void printMapValuesGreaterThan(){
+		List<String> words =
+				List.of("java", "spring", "java", "aws",
+						"spring", "java", "docker", "aws");
+		Map<String,Long> results = words.stream().collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+		List<String> getKeys= results.entrySet().stream().filter(entry->entry.getValue()>=2).map(Map.Entry::getKey).toList();
+		System.out.println(getKeys);
 	}
 
 	/**
