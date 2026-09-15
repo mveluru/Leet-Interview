@@ -662,6 +662,12 @@ public class JavaStreams {
 		double totalAmt = transactions.stream().filter(t->t.type().equals("BUY"))
 				.mapToDouble(Transaction::amount).sum();
 		System.out.println(totalAmt);
+
+		List<String> transactionsType =
+				List.of("BUY", "SELL", "BUY", "HOLD", "SELL", "BUY");
+		Map<String,Long> frequencyMap = transactionsType.stream()
+				.collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new,Collectors.counting()));
+		System.out.println(frequencyMap);
 	}
 
 	//Important
