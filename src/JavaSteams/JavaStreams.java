@@ -702,6 +702,18 @@ public class JavaStreams {
 		System.out.println(emp);
 	}
 
+	public void createMap(){
+		Map<String, Integer> salaries = Map.of(
+				"John", 90000,
+				"Mike", 120000,
+				"Adam", 80000,
+				"Sara", 110000
+		);
+		Map<String,Integer> results = salaries.entrySet().stream()
+				.filter(sal->sal.getValue()>=10000).collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
+		System.out.println(results);
+	}
+
 	/**
 	 * Runs each of the demonstration methods above in sequence, printing their
 	 * output to standard out.
