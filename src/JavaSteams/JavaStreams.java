@@ -776,6 +776,16 @@ public class JavaStreams {
 				.collect(Collectors.toMap(Employee::department, Employee::salary,(a,b)->a+b));
 		System.out.println(results2);
 	}
+    // Find missing number in sequence
+	public static void findMissingNumbersInSequence() {
+		//int[] intarray = {2,3,3,3,4,4,5,7,8,9,1};
+		int[] intarray = {2,3,3,3,4,4,7,8,9,1};
+		// removeDuplication
+		Set<Integer> set = Arrays.stream(intarray).boxed().sorted().collect(Collectors.toCollection(LinkedHashSet::new));
+		List<Integer> list = IntStream.rangeClosed(1, 9)
+				.filter(i -> !set.contains(i)).boxed().toList();
+		System.out.println("\n Missing numbers[s]: "+list);
+	}
 
 
 	/**
