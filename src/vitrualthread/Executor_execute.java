@@ -4,7 +4,17 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Executor_execute {
-    public static void main(String[] args) {
+
+    public static void execute() {
+        try(ExecutorService executor = Executors.newSingleThreadExecutor()) {
+            executor.execute(new Runnable() {
+                public void run() {
+                    System.out.println("Task running asynchronously.");
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         try (ExecutorService executor =
                      Executors.newVirtualThreadPerTaskExecutor()) {
@@ -15,6 +25,13 @@ public class Executor_execute {
                 );
             });
         }
+    }
+
+    public static void main(String[] args) {
+        execute();
+
+
+
     }
 }
 /*
