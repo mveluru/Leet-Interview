@@ -787,6 +787,20 @@ public class JavaStreams {
 		System.out.println("\n Missing numbers[s]: "+list);
 	}
 
+	public  void productsOfElementexceptIthElemement() {
+		int[] nums = {1, 2, 3, 4};
+		for (int i = 0; i < nums.length; i++) {
+			final int currentIndex = i; // Must be effectively final to use inside the lambda
+
+			int product = IntStream.range(0, nums.length)
+					.filter(index -> index != currentIndex) // Skip current index
+					.map(index -> nums[index])             // Map index to actual value
+					.reduce(1, (a, b) -> a * b);            // FIX: Identity is 1
+
+			System.out.println("Product except index " + i + ": " + product);
+		}
+	}
+
 
 	/**
 	 * Runs each of the demonstration methods above in sequence, printing their
@@ -820,6 +834,7 @@ public class JavaStreams {
 		jstreams.findSecondMaxInArray();
 		jstreams.getLengthOfEachWord();
 		jstreams.moveZeroesToEnd();
+		jstreams.productsOfElementexceptIthElemement();
 		
 	}
 
