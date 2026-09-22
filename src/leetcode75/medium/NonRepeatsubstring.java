@@ -34,6 +34,21 @@ public class NonRepeatsubstring {
         return set.size() == S.length();
 
     }
+    public void nonRepeatSubstring2(String str,int size) {
+        List<String> substringList = new LinkedList<>();
+        for (int i =0;i<str.length()-size;i++) {
+            String substring = str.substring(i,i+size);
+            if(!anyrepeatingChars(substring)) {
+                substringList.add(substring);
+            }
+        }
+        System.out.print(substringList);
+    }
+
+    public boolean anyrepeatingChars(String str) {
+        String newstring = str.chars().distinct().mapToObj(c->String.valueOf((char)c)).collect(Collectors.joining(""));
+        return str.length()!=newstring.length();
+    }
     public static void main(String[] args) {
        NonRepeatsubstring nrs = new NonRepeatsubstring();
        nrs.nonRepeatSubstring("abcabcbb", 3);
