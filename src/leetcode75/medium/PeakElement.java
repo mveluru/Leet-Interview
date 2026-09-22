@@ -1,5 +1,5 @@
 package leetcode75.medium;
-//162. Find Peak Element
+//162. Find Peak Element - peak element is an element that is strictly greater than its immediate neighbors
 
 public class PeakElement {
     public int findPeakElement(int[] nums) {
